@@ -1,0 +1,53 @@
+{
+  "name": "node_auth-app",
+  "version": "1.0.0",
+  "description": "Auth app",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "init": "mate-scripts init",
+    "lint": "mate-scripts lint",
+    "test:only": "mate-scripts test",
+    "update": "mate-scripts update",
+    "postinstall": "npm run update",
+    "test": "npm run lint && npm run test:only",
+    "start": "nodemon src/index.js"
+  },
+  "author": "Mate academy",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@mate-academy/eslint-config": "*",
+    "@mate-academy/scripts": "^1.8.1",
+    "@types/cookie": "^0.6.0",
+    "@types/express": "^4.17.21",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-node": "^8.0.1",
+    "jest": "^24.7.0"
+  },
+  "mateAcademy": {
+    "projectType": "javascript"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "classnames": "^2.5.1",
+    "cookie": "^0.6.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "eslint-config-react-app": "^7.0.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.10",
+    "nodemon": "^3.0.3",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.0",
+    "uuid": "^9.0.1"
+  },
+  "transform": {
+    "\\.js$": "<rootDir>/node_modules/babel-jest"
+  }
+}
