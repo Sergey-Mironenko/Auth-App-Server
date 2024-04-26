@@ -26,5 +26,3 @@ server.use(errorMiddleware);
 server.listen(PORT, () => {
   console.log('Server is running')
 });
-
-module.exports = server;
