@@ -4,9 +4,9 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { authRouter } from './src/routes/auth.routes';
-import { userRouter } from './src/routes/user.routes'
-import { errorMiddleware } from './src/middlewares/errorMiddleware';
+import { authRouter } from './src/routes/auth.routes.js';
+import { userRouter } from './src/routes/user.routes.js'
+import { errorMiddleware } from './src/middlewares/errorMiddleware.js';
 
 const PORT = process.env.SERVER_PORT || 3002;
 const app = express();
