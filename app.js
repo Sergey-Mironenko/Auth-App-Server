@@ -21,6 +21,7 @@ app.use(cors({
 app.use(authRouter);
 app.use(userRouter);
 
+app.use(express.static('./public'))
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
