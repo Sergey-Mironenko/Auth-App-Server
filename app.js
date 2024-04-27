@@ -21,8 +21,9 @@ app.use(cors({
 app.use(authRouter);
 app.use(userRouter);
 
-app.use(express.static('./public'))
 app.use(errorMiddleware);
+
+app.use(express.static('./public'))ж
 
 app.listen(PORT, () => {
   console.log('Server is running')
