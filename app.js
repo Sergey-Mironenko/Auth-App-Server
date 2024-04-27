@@ -23,7 +23,7 @@ app.use(userRouter);
 
 app.use(errorMiddleware);
 
-app.use(express.static('./public'))ж
+app.use(express.static('./public'));
 
 app.listen(PORT, () => {
   console.log('Server is running')
