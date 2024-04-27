@@ -23,7 +23,9 @@ app.use(userRouter);
 
 app.use(errorMiddleware);
 
-app.use(express.static('./public'));
+app.get('/favicon.ico', (req, res) => {
+  res.end();
+})
 
 app.get('/', (req, res) => {
   res.send('Hello World')
