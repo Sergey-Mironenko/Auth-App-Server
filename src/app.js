@@ -8,7 +8,6 @@ import { authRouter } from './routes/auth.routes.js';
 import { userRouter } from './routes/user.routes.js'
 import { errorMiddleware } from './middlewares/errorMiddleware';
 
-const PORT = process.env.SERVER_PORT || 3002;
 const app = express();
 
 app.use(express.json());
@@ -31,6 +30,6 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-app.listen(PORT, () => {
+app.listen(3005, () => {
   console.log('Server is running')
 })
