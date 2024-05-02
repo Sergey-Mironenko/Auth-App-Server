@@ -1,7 +1,7 @@
-import 'dotenv/config';
+//import 'dotenv/config';
 
-import './src/models/token.js';
-import './src/models/user.js';
-import { client } from './src/utils/db.js';
+//import './src/models/token.js';
+//import './src/models/user.js';
+//import { client } from './src/utils/db.js';
 
-client.sync({ force: true });
+//client.sync({ force: true });
