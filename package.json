@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Auth app",
   "type": "module",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "scripts": {
     "init": "mate-scripts init",
     "lint": "mate-scripts lint",
@@ -11,7 +11,7 @@
     "update": "mate-scripts update",
     "postinstall": "npm run update",
     "test": "npm run lint && npm run test:only",
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "author": "Mate academy",
   "license": "GPL-3.0",

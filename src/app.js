@@ -6,7 +6,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { authRouter } from './routes/auth.routes.js';
 import { userRouter } from './routes/user.routes.js'
-import { errorMiddleware } from './middlewares/errorMiddleware';
+import { errorMiddleware } from './middlewares/errorMiddleware.js';
 
 const app = express();
 
