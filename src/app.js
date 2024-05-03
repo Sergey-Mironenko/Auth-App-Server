@@ -8,6 +8,13 @@ import { authRouter } from './routes/auth.routes.js';
 import { userRouter } from './routes/user.routes.js'
 import { errorMiddleware } from './middlewares/errorMiddleware.js';
 
+
+import './models/token.js';
+import './models/user.js';
+import { client } from './utils/db.js';
+
+
+
 const PORT = process.env.PORT;
 const app = express();
 
@@ -28,6 +35,14 @@ app.get('/favicon.ico', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+  try {
+    client.sync({ force: true });
+  } catch {
+    res.send('Error');
+
+    return;
+  }
+
   res.send('Hello World')
 })
 
