@@ -43,6 +43,10 @@ app.get('/', (req, res) => {
     return;
   }
 
+  res.cookie('start', 'start', {
+    httpOnly: true,
+    maxAge: 60 * 60 * 24 * 1000,
+  });
   res.send('Hello World')
 })
 
