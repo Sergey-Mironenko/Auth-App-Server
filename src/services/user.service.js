@@ -33,6 +33,14 @@ const create = (name, email, password, activationToken) => {
   });
 };
 
+const remove = (email) => {
+  return User.destroy({
+    where: {
+      email,
+    },
+  })
+};
+
 const normalize = ({ id, name, email }) => {
   return {id, name, email};
 }
@@ -42,5 +50,6 @@ export const userService = {
   getByEmail,
   getByToken,
   create,
+  remove,
   normalize,
 }

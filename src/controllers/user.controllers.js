@@ -132,3 +132,20 @@ export const resetPassword = async (req, res) => {
 
   await sendAuthentication(res, user);
 };
+
+export const deleteAccount = async (req, res) => {
+  const { email, text } = req.body;
+
+  const user = await userService.getByEmail(email);
+
+  if (!user) {
+    throw ApiError.NotFound('Already deleted');
+  }
+
+  if (text !== 'DELETE') {
+    throw ApiError.NotFound('You have entered wrong text');
+  }
+
+  await userService.remove(email);
+  await emailService.sendDeleteEmail(email);
+};

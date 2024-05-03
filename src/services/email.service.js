@@ -59,9 +59,23 @@ const sendNotifyEmail = (email, newEmail) => {
   });
 };
 
+const sendDeleteEmail = (email) => {
+  const html = `
+  <h1>Account deleting</h1>
+  <p>Your account have been deleted.</p>
+  `;
+
+  return send({
+    email,
+    subject: 'Account deleting',
+    html,
+  });
+};
+
 export const emailService = {
   sendActivationEmail,
   sendToken,
   sendNotifyEmail,
+  sendDeleteEmail,
   send,
 };

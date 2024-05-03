@@ -5,6 +5,7 @@ import {
   rename,
   resetEmail,
   resetPassword,
+  deleteAccount,
   verifyEmail,
 } from '../controllers/user.controllers.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
@@ -23,3 +24,5 @@ userRouter.post('/verify-email', authMiddleware, catchError(verifyEmail));
 userRouter.post('/reset-email', authMiddleware, catchError(resetEmail));
 
 userRouter.post('/reset-password', authMiddleware, catchError(resetPassword));
+
+userRouter.post('/delete-account', authMiddleware, catchError(deleteAccount));
