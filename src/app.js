@@ -13,8 +13,6 @@ import './models/token.js';
 import './models/user.js';
 import { client } from './utils/db.js';
 
-
-
 const PORT = process.env.PORT;
 const app = express();
 
@@ -32,22 +30,6 @@ app.use(errorMiddleware);
 
 app.get('/favicon.ico', (req, res) => {
   res.end();
-})
-
-app.get('/', (req, res) => {
-  try {
-    client.sync({ force: true });
-  } catch {
-    res.send('Error');
-
-    return;
-  }
-
-  res.cookie('start', 'start', {
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 1000,
-  });
-  res.send('Hello World')
 })
 
 app.listen(PORT, () => {
