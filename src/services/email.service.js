@@ -62,7 +62,7 @@ const sendNotifyEmail = (email, newEmail) => {
 const sendDeleteEmail = (email) => {
   const html = `
   <h1>Account deleting</h1>
-  <p>Your account have been deleted.</p>
+  <p>Your account has been deleted.</p>
   `;
 
   return send({
