@@ -1,17 +1,17 @@
 'use strict';
 
 import 'dotenv/config';
+
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { authRouter } from './routes/auth.routes.js';
-import { userRouter } from './routes/user.routes.js'
-import { errorMiddleware } from './middlewares/errorMiddleware.js';
+import { userRouter } from './routes/user.routes.js';
 
+import { errorMiddleware } from './middlewares/errorMiddleware.js';
 
 import './models/token.js';
 import './models/user.js';
-import { client } from './utils/db.js';
 
 const PORT = process.env.PORT;
 const app = express();
