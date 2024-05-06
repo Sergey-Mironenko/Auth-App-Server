@@ -78,7 +78,10 @@ export const logout = async (req, res) => {
   const { refreshToken } = req.cookies;
   const verifiedUser = jwtService.verifyRefresh(refreshToken);
 
-  res.clearCookie('refreshToken');
+  res.clearCookie('refreshToken', {
+    sameSite: 'none',
+    secure: true,
+  });
 
   if (verifiedUser) {
     await tokenService.remove(verifiedUser.id);
@@ -164,7 +167,10 @@ export const rememberCredentials = async (req, res) => {
 
 export const clearCredentials = async (req, res) => {
   res.status(200);
-  res.clearCookie('credentials');
+  res.clearCookie('credentials', {
+    sameSite: 'none',
+    secure: true,
+  });
   res.end();
 };
 

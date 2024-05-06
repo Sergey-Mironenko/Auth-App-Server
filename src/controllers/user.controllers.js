@@ -99,8 +99,14 @@ export const resetEmail = async (req, res) => {
   user.email = newEmail;
   await user.save();
 
-  res.clearCookie('credentials');
-  res.clearCookie('resetToken');
+  res.clearCookie('credentials', {
+    sameSite: 'none',
+    secure: true,
+  });
+  res.clearCookie('resetToken', {
+    sameSite: 'none',
+    secure: true,
+  });
 
   await sendAuthentication(res, user);
 };
@@ -130,7 +136,10 @@ export const resetPassword = async (req, res) => {
   user.password = hashPassword;
   await user.save();
 
-  res.clearCookie('credentials');
+  res.clearCookie('credentials', {
+    sameSite: 'none',
+    secure: true,
+  });
 
   await sendAuthentication(res, user);
 };
