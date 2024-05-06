@@ -25,7 +25,9 @@ export const logout = async (req, res) => {
   const { refreshToken } = req.cookies;
   const verifiedUser = jwtService.verifyRefresh(refreshToken);
   
-  res.clearCookie('refreshToken');
+  res.clearCookie('refreshToken', {
+    sameSite: 'none',
+  });
   
   if (verifiedUser) {
     await tokenService.remove(verifiedUser.id);
