@@ -151,10 +151,7 @@ export const rememberCredentials = async (req, res) => {
 
 export const clearCredentials = async (req, res) => {
   res.status(200);
-  res.clearCookie('credentials', {
-    sameSite: 'none',
-    secure: true,
-  });
+  res.clearCookie('credentials');
   res.end();
 };
 

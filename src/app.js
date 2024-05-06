@@ -33,7 +33,15 @@ app.get('/favicon.ico', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Auth app server')
+  try {
+    client.sync({ force: true });
+  } catch {
+    res.send('Error');
+
+    return;
+  }
+
+  res.send('Hello World')
 })
 
 app.listen(PORT, () => {

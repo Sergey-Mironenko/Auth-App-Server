@@ -100,14 +100,8 @@ export const resetEmail = async (req, res) => {
   user.email = newEmail;
   await user.save();
 
-  res.clearCookie('credentials', {
-    sameSite: 'none',
-    secure: true,
-  });
-  res.clearCookie('resetToken', {
-    sameSite: 'none',
-    secure: true,
-  });
+  res.clearCookie('credentials');
+  res.clearCookie('resetToken');
 
   await sendAuthentication(res, user);
 };
@@ -137,10 +131,7 @@ export const resetPassword = async (req, res) => {
   user.password = hashPassword;
   await user.save();
 
-  res.clearCookie('credentials', {
-    sameSite: 'none',
-    secure: true,
-  });
+  res.clearCookie('credentials');
 
   await sendAuthentication(res, user);
 };
