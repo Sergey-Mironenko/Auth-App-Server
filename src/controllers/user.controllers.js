@@ -68,8 +68,10 @@ export const verifyEmail = async (req, res) => {
 
   res.status(200);
   res.cookie('resetToken', resetToken, {
+    maxAge: 20 * 60 * 1000,
     httpOnly: true,
-    maxAge: 60 * 20 * 1000,
+    sameSite: 'none',
+    secure: true,
   });
   res.end();
 };

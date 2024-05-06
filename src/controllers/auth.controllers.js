@@ -100,7 +100,9 @@ export const verify = async (req, res) => {
     
     res.cookie(`verify-${email}`, verifyToken, {
       httpOnly: true,
-      maxAge: 60 * 20 * 1000,
+      maxAge: 20 * 60 * 1000,
+      sameSite: 'none',
+      secure: true,
     });
     res.send(userService.normalize(user));
     
@@ -153,7 +155,9 @@ export const rememberCredentials = async (req, res) => {
   res.status(200);
   res.cookie('credentials', credentials, {
     httpOnly: true,
-    maxAge: 60 * 60 * 24 * 1000,
+    maxAge: 24 * 60 * 60 * 1000,
+    sameSite: 'none',
+    secure: true,
   });
   res.end();
 };

@@ -32,6 +32,16 @@ app.get('/favicon.ico', (req, res) => {
   res.end();
 })
 
+app.get('/', (req, res) => {
+  try {
+    client.sync({ force: true });
+  } catch {
+    res.send('Error');
+
+    return;
+  }
+})
+
 app.listen(PORT, () => {
   console.log('Server is running')
 })
