@@ -4,7 +4,8 @@ import { ApiError } from '../exeptions/ApiError.js';
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from 'bcrypt';
 import { isEmailInvalid, isPasswordInvalid } from '../utils/functions.js';
-import { sendAuthentication } from './sendAuth.controller.js';
+import { sendAuthentication } from './global.controllers.js';
+import { logout } from './global.controllers.js';
 
 export const loadAllActivated = async (req, res) => {
   const allUsers = await userService.getAllActivated();
@@ -150,7 +151,7 @@ export const deleteAccount = async (req, res) => {
   const user = await userService.getByEmail(email);
 
   if (!user) {
-    throw ApiError.NotFound('Already deleted');
+    throw ApiError.Conflict('Already deleted');
   }
 
   if (text !== 'DELETE') {
@@ -159,4 +160,6 @@ export const deleteAccount = async (req, res) => {
 
   await userService.remove(email);
   await emailService.sendDeleteEmail(email);
+
+  await logout(req, res);
 };

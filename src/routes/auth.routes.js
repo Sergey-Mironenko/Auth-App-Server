@@ -2,7 +2,6 @@ import express from 'express';
 import {
   register,
   login,
-  logout,
   activation,
   verify,
   reset,
@@ -12,6 +11,7 @@ import {
   compareTokens,
   getCredentials,
 } from '../controllers/auth.controllers.js';
+import { logout } from '../controllers/global.controllers.js';
 import { catchError, catchAuthorizationError } from '../middlewares/catchError.js';
 
 export const authRouter = express.Router();

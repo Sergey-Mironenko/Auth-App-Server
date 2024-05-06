@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import bcrypt from 'bcrypt';
 import { ApiError } from '../exeptions/ApiError.js';
 import { isEmailInvalid, isPasswordInvalid } from '../utils/functions.js';
-import { sendAuthentication } from './sendAuth.controller.js';
+import { sendAuthentication } from './global.controllers.js';
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -72,22 +72,6 @@ export const login = async (req, res) => {
   }
 
   await sendAuthentication(res, user);
-};
-
-export const logout = async (req, res) => {
-  const { refreshToken } = req.cookies;
-  const verifiedUser = jwtService.verifyRefresh(refreshToken);
-
-  res.clearCookie('refreshToken', {
-    sameSite: 'none',
-    secure: true,
-  });
-
-  if (verifiedUser) {
-    await tokenService.remove(verifiedUser.id);
-  }
-
-  res.sendStatus(204);
 };
 
 export const verify = async (req, res) => {
