@@ -33,14 +33,6 @@ app.get('/favicon.ico', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  try {
-    client.sync({ force: true });
-  } catch {
-    res.send('Error');
-
-    return;
-  }
-
   res.send('Hello World')
 })
 
