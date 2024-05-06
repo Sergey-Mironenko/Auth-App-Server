@@ -9,8 +9,10 @@ export const sendAuthentication = async (res, user) => {
   await tokenService.save(user.id, refreshToken);
   
   res.cookie('refreshToken', refreshToken, {
+    maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    maxAge: 60 * 60 * 24 * 1000,
+    sameSite: 'none',
+    secure: true,
   });
   
   res.send({
