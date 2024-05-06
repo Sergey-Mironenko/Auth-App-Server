@@ -1,4 +1,4 @@
-# Authentication App
+# Authentication App Server
 A single-page application that alows user to register, login or change the password. Loged user can see the list of all activated users, change his name password or email. Implements the look and behaviour of old computers.
 
 # Table of contents
