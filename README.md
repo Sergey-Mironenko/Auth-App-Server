@@ -116,8 +116,8 @@ Server uses two types of routes and `errorMiddleware`, that in case of error rec
 - Checks if `newPassword` is valid, if not throws appropriate error.
 - Finds user in database by `email`.
 - If user haven't been found throws appropriate error.
-- Checks if any user uses such password. If user is found or `newPassword` is used throws appropriate error.
-- Hashes `newPassword` and replaces user's password in database. Id creates by default.
+- Checks if any user uses such password. If `newPassword` is used throws appropriate error.
+- Hashes `newPassword` and changes user's password in database.
 - Sends normalized user.
 
 ## logout controller
@@ -126,3 +126,57 @@ Server uses two types of routes and `errorMiddleware`, that in case of error rec
 - Verifies `refreshToken` and receives `verifiedUser` data.
 - Removes `refreshToken` from client's cookies.
 - If `verifiedUser` is not undefined removes `refreshToken` from database.
+
+## loadAllActivated controller
+- Finds all activated users in database.
+- Normalizes and sends them.
+
+## verifyPassword controller
+- Receives request and response as params.
+- Receives `email` and `password` from request body.
+- Finds user in database by `email`.
+- Checks if `password` is correct.
+
+## rename controller
+- Receives request and response as params.
+- Receives `email` and `name` from request body.
+- Finds user in database by `email`.
+- Checks if `name` is not used, if used throws appropriate error.
+- Changes user's name in database.
+- Calls `sendAuthentication` function.
+
+## verifyEmail controller
+- Receives request and response as params.
+- Receives `newEmail` from request body.
+- Creates `resetToken` with `uuid`.
+- Checks if `newEmail` is valid and not used, if something is wrong throws appropriate error.
+- Sends `resetToken` to user's email and sets it in client's cookies.
+- Calls `sendAuthentication` function.
+
+## resetEmail controller
+- Receives request and response as params.
+- Receives `oldEmail`, `newEmail` and `token` from request body.
+- Receives `resetToken` from request cookies.
+- If there is no `resetToken` or `resetToken` is different from `token` throws appropriate error.
+- Finds user in database by `email`.
+- Sends a notify email to user's old email.
+- Changes users email in database.
+- Calls `sendAuthentication` function.
+
+## resetPassword controller
+- Receives request and response as params.
+- Receives `email`, `newPassword` from request body.
+- Checks if `newPassword` is valid, if not throws appropriate error.
+- Finds user in database by `email`.
+- Checks if any user uses such password. If `newPassword` is used throws appropriate error.
+- Hashes `newPassword` and changes user's password in database.
+- Removes saved `credentials` (in case if they are saved) from client's cookies.
+- Calls `sendAuthentication` function.
+
+## deleteAccount controller
+- Receives request and response as params.
+- Receives `email`, `text` from request body.
+- Finds user in database by `email`.
+- If user haven't been found or `text` is different from `DELETE` throws appropriate error.
+- Removes User from database and sends email about deleting account.
+- Calls `logout` function.
