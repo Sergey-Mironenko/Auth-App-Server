@@ -14,7 +14,7 @@ import { catchError } from '../middlewares/catchError.js';
 
 export const userRouter = express.Router();
 
-authRouter.get('/logout', catchError(logout));
+userRouter.get('/logout', catchError(logout));
 
 userRouter.get('/users', authMiddleware, catchError(loadAllActivated));
 
