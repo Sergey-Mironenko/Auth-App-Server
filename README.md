@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 # Auth App Server
 Server is created using Express, it alows to handle authentication, registration, changing data and some more processes. Logic is devided into routes, controlers, and services. Server has custom errors for every error caused by client. To prevent server from falling it has caching error middlewares in all routes which cach errors in controllers. Although it uses a custom middleware to handle any error and return an appropriate response.
-=======
+
 # Authentication App Server
 A single-page application that alows user to register, login or change the password. Loged user can see the list of all activated users, change his name password or email. Implements the look and behaviour of old computers.
->>>>>>> 0ac51c7caa5dbdec250cacbdc95ef7e1e8cc4e29
 
 # Table of contents
 - [Technologies used](#technologies-used)
