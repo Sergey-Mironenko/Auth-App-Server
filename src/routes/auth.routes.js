@@ -11,7 +11,6 @@ import {
   compareTokens,
   getCredentials,
 } from '../controllers/auth.controllers.js';
-import { logout } from '../controllers/global.controllers.js';
 import { catchError, catchAuthorizationError } from '../middlewares/catchError.js';
 
 export const authRouter = express.Router();
@@ -21,8 +20,6 @@ authRouter.post('/registration', catchError(register));
 authRouter.get('/activate/:activationToken', catchError(activation));
 
 authRouter.post('/login', catchError(login));
-
-authRouter.get('/logout', catchError(logout));
 
 authRouter.post('/verify', catchError(verify));
 

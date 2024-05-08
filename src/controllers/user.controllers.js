@@ -1,11 +1,27 @@
 import { userService } from '../services/user.service.js'
+import { jwtService } from "../services/jwt.service.js";
+import { tokenService } from "../services/token.service.js";
 import { emailService } from '../services/email.service.js';
 import { ApiError } from '../exeptions/ApiError.js';
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from 'bcrypt';
 import { isEmailInvalid, isPasswordInvalid } from '../utils/functions.js';
 import { sendAuthentication } from './global.controllers.js';
-import { logout } from './global.controllers.js';
+
+export const logout = async (req, res) => {
+  const { refreshToken } = req.cookies;
+  const verifiedUser = jwtService.verifyRefresh(refreshToken);
+  
+  res.clearCookie('refreshToken', {
+    sameSite: 'none',
+  });
+  
+  if (verifiedUser) {
+    await tokenService.remove(verifiedUser.id);
+  }
+  
+ res.sendStatus(204);
+};
 
 export const loadAllActivated = async (req, res) => {
   const allUsers = await userService.getAllActivated();

@@ -1,5 +1,4 @@
 import { ApiError } from "../exeptions/ApiError.js";
-import cookie from 'cookie';
 import { jwtService } from "../services/jwt.service.js";
 
 export const catchError = (action) => {

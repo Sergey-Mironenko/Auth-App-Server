@@ -20,18 +20,3 @@ export const sendAuthentication = async (res, user) => {
     accessToken,
   });
 };
-
-export const logout = async (req, res) => {
-  const { refreshToken } = req.cookies;
-  const verifiedUser = jwtService.verifyRefresh(refreshToken);
-  
-  res.clearCookie('refreshToken', {
-    sameSite: 'none',
-  });
-  
-  if (verifiedUser) {
-    await tokenService.remove(verifiedUser.id);
-  }
-  
- res.sendStatus(204);
-};

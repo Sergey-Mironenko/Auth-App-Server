@@ -129,7 +129,6 @@ export const compareTokens = async (req, res) => {
   }
 
   res.sendStatus(200);
-  res.end();
 };
 
 export const rememberCredentials = async (req, res) => {
@@ -139,22 +138,20 @@ export const rememberCredentials = async (req, res) => {
     password,
   })
 
-  res.status(200);
   res.cookie('credentials', credentials, {
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,
     sameSite: 'none',
     secure: true,
   });
-  res.end();
+  res.sendStatus(200);
 };
 
 export const clearCredentials = async (req, res) => {
-  res.status(200);
   res.clearCookie('credentials', {
     sameSite: 'none',
   });
-  res.end();
+  res.sendStatus(200);
 };
 
 export const reset = async (req, res) => {
@@ -200,6 +197,10 @@ export const refresh = async (req, res, next) => {
   }
 
   const user = await userService.getByEmail(verifiedUser.email);
+
+  if (!user) {
+    throw ApiError.Unauthorized('Failed to refresh');
+  }
 
   await sendAuthentication(res, user);
 };

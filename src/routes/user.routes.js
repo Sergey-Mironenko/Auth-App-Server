@@ -7,11 +7,14 @@ import {
   resetPassword,
   deleteAccount,
   verifyEmail,
+  logout,
 } from '../controllers/user.controllers.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { catchError } from '../middlewares/catchError.js';
 
 export const userRouter = express.Router();
+
+authRouter.get('/logout', catchError(logout));
 
 userRouter.get('/users', authMiddleware, catchError(loadAllActivated));
 
